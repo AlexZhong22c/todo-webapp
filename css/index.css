@@ -1,0 +1,525 @@
+/* 用来标明正在测试的区域：*/
+.test {
+    background-color: #ff00cc;
+}
+
+/**
+ * reset
+ */
+* {margin: 0;padding: 0;}
+
+ul {
+    list-style: none;
+}
+li {
+    cursor: pointer;
+}
+h1, h2, h3 {
+    font-weight: normal;
+}
+h2, h3 {
+    font-size: 16px;
+}
+
+/**
+ * common
+ */
+body, button, input, textarea {
+    font-family: 'Microsoft YaHei', 'SimHei', 'STHeiti', sans-serif;
+}
+body {
+    min-width: 700px;
+    min-height: 400px;
+    color: #3f3f3f;
+}
+select, input, textarea {
+    border: none;
+    outline: none;
+}
+
+/**
+ * old color
+ */
+.white-bg {background: #FFFFCC;}
+.black-bg {background: #3F3A39;}
+.green-bg {background: #CFE8CC;}
+.blue-bg {background: #5D6684;}
+.grey-bg {background: #E9E9E9;}
+.lt-grey-bg {background: #DADADA;}
+/**
+ * 日系风格背景颜色：(new)
+ */
+.qingci-bg {background: #69b0ac;}/*青瓷*/
+.liuran-bg {background: #91ad70;} /*柳染*/
+.ruozhu-bg {background: #5dac81;}/*若竹*/
+.bailv-bg {background: #a8d8b9;}/*白绿*/
+.qinglv-bg {background: #00aa90;}/*青绿*/
+.boqing-bg {background: #91b491;}/*薄青*/
+
+/**
+ * header
+ */
+.header {
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    -o-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+    z-index: 10;/*作用未明??*/
+}
+h1 {
+    color: #CFE8CC;
+    /* 垂直居中：*/
+    line-height: 60px;
+    margin-left: 15px;
+}
+
+.main-content {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 60px;
+  bottom: 0;
+  z-index: 9; 
+}
+
+/**
+ * category
+ */
+.category {
+    position: absolute;
+    top: 0;
+    /* 高度占满剩余屏幕：*/
+    bottom: 0;
+
+    width: 240px;
+    padding: 71px 0 65px 0;
+    z-index: 9;
+
+    line-height: 2;    /*padding: 15px 10px 0 15px;*/
+    
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    
+    -webkit-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
+    -o-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
+    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
+}
+.category .active {
+    background-color: #a8d8b9;
+}
+.all-tasks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    /* 看起来舒服：*/
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom: 1px dashed #A6A6A6;
+    box-sizing: border-box;
+}
+.cate-title {
+    position: absolute;
+    top: 38px;
+    left: 0;
+    width: inherit;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom: 1px dashed #A6A6A6;
+    box-sizing: border-box;
+}
+#cate-list {
+    padding-left: 15px;
+    overflow: auto;
+    height: 100%;
+}
+.list h2 {
+    position: relative;
+    padding-left: 15px;
+}
+.list h3 {
+    position: relative;
+    padding-left: 30px;
+}
+.list h2:hover, .list h3:hover {
+    background-color: #a8d8b9;
+}
+.list h2:hover .fa-trash-o, .list h3:hover .fa-trash-o {
+    display: inline-block;
+}
+.category i {
+    margin-right: 5px;
+}
+.list .fa-trash-o {
+    display: none;
+    font-size: 18px;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+}
+/*废纸篓功能暂时不开放*/
+#waste-bin {
+    /*margin-left: 45px;*/
+    position: absolute;
+    right: 2px;
+    top: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+    line-height: 24px;
+    width: auto;
+    border: 1px solid #A6A6A6;
+    border-radius: 4px;
+}
+.add {
+    width: 240px;
+    height: 60px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s ease;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -o-transition: 0.2s ease;
+}
+.add:hover {
+    background-color: #B1CEB3;
+    color: #42602d;
+}
+
+/**
+ * tasks
+ */
+.tasks {
+    width: 260px;
+    position: absolute;
+    top: 0;
+    left: 240px;
+    bottom: 0;
+    padding: 60px 0 65px 0;
+  
+    
+    z-index: 8;    /* padding: 15px 10px 0 15px; */
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    -webkit-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
+    -o-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
+}
+.status {
+    position: absolute;
+    top: 0;
+    width: 260px;
+    text-align: center;
+    margin-top: 15px;
+    padding-bottom: 9px;
+    border-bottom: 1px dashed #A6A6A6;
+}
+.status button {
+    width: 60px;
+    height: 30px;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s ease;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -o-transition: 0.2s ease;
+
+    border-radius: 3px;
+    color: white;
+}
+.status button:hover {
+
+    /*         -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+        -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+        -o-box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.6); */
+    background-color: #5dac81;
+    color: white;
+    /* 要写:*/
+    cursor: pointer;
+}
+.status .active {
+    background-color: #5dac81;
+    cursor: default;
+}
+.task-list {
+    position: relative;
+    /* margin-top: 10px; */
+    margin: 0 3px 0 5px;
+    line-height: 2;
+    font-size: 14px;
+    overflow: auto;
+    height: 100%;
+}
+.task-list div {
+    line-height: 2.3;
+    background: #a1c4a1;
+    padding-left: 10px; 
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;  
+    /*  position: relative;
+    z-index: 18;
+    -webkit-box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.3);
+    -o-box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.3); */
+}
+.task-list div .fa-bars {
+  margin-right: 5px;
+}
+.task-list li {
+
+    /* margin: 0 5px; */
+    padding-left: 20px;    /*background-color: #fff;*/
+    
+    transition: 0.2s ease-out;
+    -webkit-transition: 0.2s ease-out;
+    -moz-transition: 0.2s ease-out;
+    -o-transition: 0.2s ease-out;
+
+    position: relative;
+}
+.task-list li i {
+    margin-right: 5px;
+    width: 14px;
+}
+.task-list li:hover {
+    background-color: #a8d8b9;
+}
+.task-list .fa-trash-o {
+    display: none;
+    font-size: 18px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.task-list li:hover .fa-trash-o {
+    display: inline-block;
+}
+.task-list .active {
+    background-color: #a8d8b9;
+}
+.task-done{
+    color: #bb00ff;
+}
+.add-task {
+    position: absolute;
+    bottom: 0;
+    width: 260px;
+}
+.add-task i {
+    margin-right: 5px;
+}
+
+/**
+ * main
+ */
+.main {
+    position: absolute;
+    top: 0;
+    left: 500px;
+    right: 0;
+    bottom: 0;
+
+    /*padding: 15px 10px 0 15px;*/
+}
+.title {
+    height: 55px;
+    line-height: 55px;
+    overflow: hidden;
+    font-weight: bold;
+    position: relative;
+    z-index: 5;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    -o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+#todo-name {
+    padding-left: 15px;
+    float: left;
+}
+.manipulate {
+    font-size: 26px;
+    padding-right: 20px;
+    float: right;
+}
+.manipulate a {
+    margin-right: 15px;
+    cursor: pointer;
+}
+#task-date {
+    height: 55px;
+    line-height: 55px;
+    padding-left: 15px;
+    position: relative;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    -o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+#content {
+    position: absolute;
+    top: 120px;
+    bottom: 60px;
+    right: 15px;
+    left: 15px;
+}
+.main input {
+    font-size: 16px;
+    border: 1px solid #e9e9e9;
+}
+.main input:focus {
+    border: 1px solid #e9e9e9;
+}
+.input-title {
+    padding: 7px 10px;
+    margin-top: 10px;
+    width: 244px;
+
+    background: #5dac81;
+}
+.input-date {
+    padding: 5px 10px;
+
+    background: #91b491;
+}
+.textarea-content {
+    width: 100%;
+    height: 100%;
+    margin: 0; /* don't want to add to container size */
+    border: 0; /* don't want to add to container size */
+    font-size: 16px;
+    resize: none;
+    line-height: 1.6;
+}
+.button-area {
+    display: none;
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+}
+.button-area button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px 20px;
+    margin-left: 15px;
+}
+.save {
+    background-color: #69b0ac;
+}
+
+/**
+ * ================modal==============
+ */
+.cover {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;    
+    /*background-color: rgba(39,37,114,0.4);*/
+    background-color: rgba(0, 0, 0, 0.6);
+    
+    z-index: 99;
+}
+.modal {
+    z-index: 100;
+    width: 320px;
+    height: 180px;
+    padding: 15px;
+    background-color: #eee;
+    margin-left: -170px;
+    margin-top: -80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+   
+    -webkit-box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    -o-box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+.modal-head {
+    font-size: 22px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+}
+.modal-body {
+
+    /*background-color: #aaa;*/
+    margin-top: 6px;
+    padding-top: 20px;
+    padding-left: 30px;
+    line-height: 2.4;
+    border-top: 1px dashed #C6CAE0;
+}
+.modal-body select, .modal-body input {
+    width: 160px;
+    height: 26px;
+    padding-left: 5px;
+    border: 1px solid #C6CAE0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#modal-foot {
+    text-align: right;
+    padding-top: 14px;
+    padding-right: 20px;
+}
+#modal-foot button {
+    background-color: #69b0ac;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 5px 20px;
+    margin-left: 10px;
+    transition: 0.2s ease;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -o-transition: 0.2s ease;
+
+    border-radius: 3px;
+}
+#modal-foot button:hover {
+    background-color: #B1CEB3;
+    color: #42602d;
+}
+
+.cover2 {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 500px;
+    bottom: 0;    
+    /*background-color: rgba(39,37,114,0.4);*/
+    background-color: rgba(0, 0, 0, 0.3);
+    
+    z-index: 99;
+}

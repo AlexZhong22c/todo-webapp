@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ToDo</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="header qingci-bg">
+       <h1>ToDo</h1>
+    </div>
+    <div class="main-content">
+        <div class="category lt-grey-bg">
+
+            <div id="allTasks" class="all-tasks">
+                <i></i>所有任务(<span>9</span>)
+            </div>
+            <div class="cate-title"><i></i>分类列表</div>
+
+            <div id="cate-list" class="list">
+<ul>
+    <li>
+        <h2><i></i><span>默认分类 (0)</span><i></i></h2>
+    </li>
+    <li>
+        <h2><i></i><span>百度IFE项目 (67)</span><i></i></h2>
+        <ul>
+            <li>
+                <h3 childcateid="0"><i></i><span>childCate1</span> (89)<i></i></h3>
+            </li>
+            <li>
+                <h3 childcateid="1"><i></i><span>childCate2</span> (89)<i></i></h3>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+            </div>
+            <!-- <button id="waste-bin"><i class="fa fa-trash-o"></i>废纸篓(<span>10</span>)</button> -->
+            <button class="add qingci-bg" id="add"><i></i>新增分类</button>
+        </div>
+        <div class="tasks grey-bg">
+            <div class="status">
+                <button id="all-tasks" class="boqing-bg">所有</button>
+                <button id="unfinish-tasks" class="boqing-bg">未完成</button>
+                <button id="finished-tasks" class="boqing-bg">已完成</button>
+            </div>
+<div id="task-list" class="task-list">
+    <div>2015-06-05</div>
+    <ul>
+        <i></i><li taskid="1">todo-1</li><i></i>
+        <i></i><li taskid="2">todo-2</li><i></i>
+    </ul>
+    <div>2015-06-07</div>
+    <ul>
+        <i></i><li>todo-1</li><i></i>
+        <i></i><li>todo-2</li><i></i>
+    </ul>
+</div>
+            <button id ="add-task" class="add-task add qingci-bg"><i></i>新增任务</button>
+        </div>
+        <div class="main">
+            <div class="title ruozhu-bg">
+                <div id="todo-name">todo-1</div>
+                <div class="manipulate">
+                    <a><i class="fa fa-check-square-o"></i></a>
+                    <a><i class="fa fa-pencil-square-o"></i></a>
+                </div>
+            </div>
+            <div id="task-date" class="boqing-bg">
+                任务日期：<span>2015-06-05</span>
+            </div>
+            <div id="content">
+                finish task 3啊啊啊啊啊这个是假的
+            </div>
+            <div class="button-area">
+                <!-- <span class="info">提示信息</span>
+                <button class="save">保存</button>
+                <button class="cancel-save">放弃</button> -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="cover">
+        <div class="modal">
+            <div class="modal-head">
+                新增分类
+            </div>
+            <div class="modal-body">
+                新分类父节点：<select id="modal-select">
+                    <option value="volvo">Volvo</option>
+                </select><br>
+                &nbsp;&nbsp;&nbsp;新分类名称：<input id="newCateName" type="text">
+            </div>
+            <div id="modal-foot">
+                <button class="cancel">取消</button>
+                <button class="ok">确认</button>
+            </div>
+        </div>
+    </div>
+    <div class="cover2">
+        
+    </div>
+    <script src="js/jquery-1.8.1.min.js"></script>
+    <script src="js/used-util.js"></script>
+    <script src="js/localStorage util.js"></script>
+    <script src="js/todo.js"></script>
+
+</body>
+</html>
