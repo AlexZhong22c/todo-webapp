@@ -6,35 +6,45 @@
 /**
  * reset
  */
-* {margin: 0;padding: 0;}
+div, body, h1, h2, h3, ul, li {
+  margin: 0;
+  padding: 0; }
 
-ul {
-    list-style: none;
-}
 li {
-    cursor: pointer;
-}
+  list-style-type: none; }
+
 h1, h2, h3 {
-    font-weight: normal;
-}
-h2, h3 {
-    font-size: 16px;
-}
+  font-weight: normal; }
+
+html {
+  font-size: 62.5%; }
 
 /**
  * common
  */
-body, button, input, textarea {
-    font-family: 'Microsoft YaHei', 'SimHei', 'STHeiti', sans-serif;
-}
 body {
-    min-width: 700px;
-    min-height: 400px;
-    color: #3f3f3f;
-}
-select, input, textarea {
-    border: none;
-    outline: none;
+  font-family: "Microsoft YaHei", "SimHei", "STHeiti", sans-serif;
+  -webkit-tap-highlight-color: transparent; }
+
+button, select, input, textarea {
+  font-family: "Microsoft YaHei", "SimHei", "STHeiti", sans-serif;
+  outline: none; }
+
+
+i {
+  margin-right: 5px; }
+
+textarea:disabled {
+  color: #000;
+  background: #fff;
+  -webkit-text-fill-color: black;
+  -webkit-opacity: 1; }
+
+/*这段有待考究：*/
+.category, .all-tasks, .cate-title, .list, .add, .tasks, .status, #task-list, .main, .title, #task-date, #content, .cover, .modal {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; 
 }
 
 /**
@@ -71,9 +81,14 @@ select, input, textarea {
     -o-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 
-    z-index: 10;/*作用未明??*/
+    /*作用未明:*/
+    z-index: 10;
 }
-h1 {
+.header div {
+    display: none;
+}
+.header h1 {
+    font-size: 2.4rem;
     color: #CFE8CC;
     /* 垂直居中：*/
     line-height: 60px;
