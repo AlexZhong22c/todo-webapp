@@ -101,7 +101,9 @@ textarea:disabled {
   left: 0;
   top: 60px;
   bottom: 0;
-  z-index: 9; 
+  z-index: 9;
+  /*font-size能被后代元素继承：*/
+  font-size: 1.6rem;
 }
 
 /**
@@ -117,8 +119,6 @@ textarea:disabled {
     padding: 71px 0 65px 0;
     z-index: 9;
 
-    /*font-size能被后代元素继承：*/
-    font-size: 1.6rem;
     line-height: 2;    /*padding: 15px 10px 0 15px;*/
     
     -webkit-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
@@ -199,7 +199,6 @@ textarea:disabled {
     position: absolute;
     left: 0;
     bottom: 0;
-    font-size: 1.6rem;
     border: none;
     cursor: pointer;
     outline: none;
