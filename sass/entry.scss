@@ -1,0 +1,16 @@
+/* 用来标明正在测试的区域：*/
+.test {
+  background-color: #ff00cc;
+}
+/**
+ * variables
+ */
+@import 'variables';
+/**
+ * reset and common
+ */
+@import 'reset';
+/**
+ * header
+ */
+@import 'header';

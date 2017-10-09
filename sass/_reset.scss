@@ -1,0 +1,60 @@
+div, body, h1, h2, h3, ul, li {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style-type: none;
+}
+h1, h2, h3 {
+  font-weight: normal;
+}
+html {
+  font-size: 62.5%;
+}
+/**
+ * common
+ */
+body {
+  font-family: $base-ff;
+
+  //  safari mobile click flash bug
+  -webkit-tap-highlight-color: transparent;
+}
+button, select, input, textarea {
+  font-family: $base-ff;
+  outline: none;
+}
+i {
+  margin-right: 5px;
+}
+textarea:disabled {
+  color: #000;
+  background: #fff;
+  -webkit-text-fill-color: rgba(0, 0, 0, 1);
+  -webkit-opacity: 1;
+}
+/*这段有待考究：*/
+.category, .all-tasks, .cate-title, .list, .add, .tasks, .status, #task-list, .main, .title, #task-date, #content, .cover, .modal {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; 
+}
+// 颜色，先暂时这么写：
+/**
+ * old color
+ */
+.white-bg {background: #FFFFCC;}
+.black-bg {background: #3F3A39;}
+.green-bg {background: #CFE8CC;}
+.blue-bg {background: #5D6684;}
+.grey-bg {background: #E9E9E9;}
+.lt-grey-bg {background: #DADADA;}
+/**
+ * 日系风格背景颜色：(new)
+ */
+.qingci-bg {background: #69b0ac;}/*青瓷*/
+.liuran-bg {background: #91ad70;} /*柳染*/
+.ruozhu-bg {background: #5dac81;}/*若竹*/
+.bailv-bg {background: #a8d8b9;}/*白绿*/
+.qinglv-bg {background: #00aa90;}/*青绿*/
+.boqing-bg {background: #91b491;}/*薄青*/
