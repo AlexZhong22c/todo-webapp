@@ -1,0 +1,129 @@
+.tasks {
+  width: 260px;
+  position: absolute;
+  top: 0;
+  left: 240px;
+  bottom: 0;
+  padding: 60px 0 65px 0;
+
+
+  z-index: 8;    /* padding: 15px 10px 0 15px; */
+
+  -webkit-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.status {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  margin-top: 15px;
+  padding-bottom: 9px;
+  border-bottom: 1px dashed #A6A6A6;
+
+  button {
+    width: 60px;
+    height: 30px;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s ease;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -o-transition: 0.2s ease;
+
+    border-radius: 3px;
+    color: white;
+    &:hover {
+      -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+      -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+      -o-box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+      background-color: #5dac81;
+      color: white;
+      /* 要写:*/
+      cursor: pointer;
+    }
+  }
+  .active {
+    background-color: #5dac81;
+    cursor: default;
+  }
+}
+
+.task-list {
+  position: relative;
+  /* margin-top: 10px; */
+  margin: 0 3px 0 5px;
+  line-height: 2;
+  font-size: 1.4rem;
+  overflow: auto;
+  height: 100%;
+
+  div {
+    line-height: 2.3;
+    background: #a1c4a1;
+    padding-left: 10px; 
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;  
+    /*  position: relative;
+    z-index: 18;
+    -webkit-box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.3);
+    -o-box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.3); */
+    .fa-bars {
+      margin-right: 5px;
+    }
+  }
+
+  li {
+    /* margin: 0 5px; */
+    padding-left: 20px;    /*background-color: #fff;*/
+    cursor: pointer;
+    transition: 0.2s ease-out;
+    -webkit-transition: 0.2s ease-out;
+    -moz-transition: 0.2s ease-out;
+    -o-transition: 0.2s ease-out;
+
+    position: relative;
+    i {
+      margin-right: 5px;
+      width: 14px;
+      &:hover {
+        background-color: #a8d8b9;
+      }
+    }
+    &:hover .fa-trash-o {
+      display: inline-block;
+    }
+  }
+
+  .fa-trash-o {
+    display: none;
+    font-size: 1.8rem;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
+
+  .active {
+    background-color: #a8d8b9;
+  }
+}
+
+.task-done{
+  color: #bb00ff;
+}
+.add-task {
+  position: absolute;
+  bottom: 0;
+  width: 260px;
+  i {
+    margin-right: 5px;
+  }
+}

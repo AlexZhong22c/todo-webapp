@@ -14,3 +14,23 @@
  * header
  */
 @import 'header';
+/**
+ * .main-content
+ */
+.main-content {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 60px;
+  bottom: 0;
+  z-index: 9;
+  /*font-size能被后代元素继承：*/
+  font-size: 1.6rem;
+}
+/**
+ * category
+ */
+@import 'category';
+/**
+ * tasks
+ */

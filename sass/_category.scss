@@ -1,0 +1,108 @@
+.category {
+  position: absolute;
+  top: 0;
+  /* 高度占满剩余屏幕：*/
+  bottom: 0;
+
+  width: 240px;
+  padding: 71px 0 65px 0;
+  z-index: 9;
+
+  line-height: 2;    /*padding: 15px 10px 0 15px;*/
+  
+  -webkit-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
+  -o-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
+
+  .active {
+    background-color: #a8d8b9;
+  }
+}
+
+.all-tasks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  /* 看起来舒服：*/
+  padding-top: 5px;
+  padding-left: 15px;
+  border-bottom: 1px dashed #A6A6A6;
+}
+.cate-title {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  width: inherit;
+  padding-left: 15px;
+  border-bottom: 1px dashed #A6A6A6;
+}
+#cate-list {
+  padding-left: 15px;
+  overflow: auto;
+  height: 100%;
+}
+.list {
+
+  h2, h3 {
+    /*覆盖h2h3的默认字体大小：*/
+    font-size: 1.6rem;
+    position: relative;
+    cursor: pointer;
+    &:hover {
+      background-color: #a8d8b9;
+      .fa-trash-o {
+        display: inline-block;
+      }
+    }
+  }
+  h2 {
+    padding-left: 15px;
+  }
+  h3 {
+    padding-left: 30px;
+  }
+
+  .fa-trash-o {
+    display: none;
+    font-size: 1.8rem;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+  }
+}
+
+/*废纸篓功能暂时不开放*/
+#waste-bin {
+    /*margin-left: 45px;*/
+    position: absolute;
+    right: 2px;
+    top: 6px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    outline: none;
+    line-height: 24px;
+    width: auto;
+    border: 1px solid #A6A6A6;
+    border-radius: 4px;
+}
+
+.add {
+  width: 100%;
+  height: 60px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s ease;
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
+  &:hover {
+    background-color: #B1CEB3;
+    color: #42602d;
+  }
+}
