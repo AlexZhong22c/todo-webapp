@@ -1,5 +1,6 @@
 .category {
   @extend %border-box;
+  @extend %lt-grey-bg;
   position: absolute;
   top: 0;
   /* 高度占满剩余屏幕：*/
@@ -93,6 +94,7 @@
 
 .add {
   @extend %border-box;
+  @extend %qingci-bg;
   width: 100%;
   height: 60px;
   position: absolute;

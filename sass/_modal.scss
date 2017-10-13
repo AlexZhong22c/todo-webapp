@@ -58,7 +58,7 @@
   padding-top: 14px;
   padding-right: 20px;
   button {
-    background-color: #69b0ac;
+    @extend %qingci-bg;
     border: none;
     cursor: pointer;
     outline: none;

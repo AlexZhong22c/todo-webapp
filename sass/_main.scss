@@ -16,6 +16,7 @@
 }
 .title {
   @extend %border-box;
+  @extend %ruozhu-bg;
   height: 55px;
   line-height: 55px;
   overflow: hidden;
@@ -44,6 +45,7 @@
 
 #task-date {
   @extend %border-box;
+  @extend %boqing-bg;
   height: 55px;
   line-height: 55px;
   padding-left: 15px;
@@ -96,5 +98,5 @@
   }
 }
 .save {
-  background-color: #69b0ac;
+  @extend %qingci-bg;
 }
