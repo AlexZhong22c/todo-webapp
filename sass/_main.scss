@@ -1,4 +1,5 @@
 .main {
+  @extend %border-box;
   position: absolute;
   top: 0;
   left: 500px;
@@ -14,6 +15,7 @@
   }
 }
 .title {
+  @extend %border-box;
   height: 55px;
   line-height: 55px;
   overflow: hidden;
@@ -41,6 +43,7 @@
 }
 
 #task-date {
+  @extend %border-box;
   height: 55px;
   line-height: 55px;
   padding-left: 15px;
@@ -51,6 +54,7 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 #content {
+  @extend %border-box;
   position: absolute;
   top: 120px;
   bottom: 60px;

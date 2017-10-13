@@ -1,4 +1,5 @@
 .tasks {
+  @extend %border-box;
   width: 260px;
   position: absolute;
   top: 0;
@@ -16,6 +17,7 @@
 }
 
 .status {
+  @extend %border-box;
   position: absolute;
   top: 0;
   width: 100%;
@@ -56,6 +58,7 @@
 }
 
 .task-list {
+  @extend %border-box;
   position: relative;
   /* margin-top: 10px; */
   margin: 0 3px 0 5px;

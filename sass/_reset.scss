@@ -33,8 +33,7 @@ textarea:disabled {
   -webkit-text-fill-color: rgba(0, 0, 0, 1);
   -webkit-opacity: 1;
 }
-/*这段有待考究：*/
-.category, .all-tasks, .cate-title, .list, .add, .tasks, .status, #task-list, .main, .title, #task-date, #content, .cover, .modal {
+%border-box {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; 
