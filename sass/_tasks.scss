@@ -45,14 +45,14 @@
       -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
       -o-box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
       box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
-      background-color: #5dac81;
+      background-color: $statusBtnActiveColor;
       color: white;
       /* 要写:*/
       cursor: pointer;
     }
   }
   .active {
-    background-color: #5dac81;
+    background-color: $statusBtnActiveColor;
     cursor: default;
   }
 }
@@ -97,9 +97,9 @@
     i {
       margin-right: 5px;
       width: 14px;
-      &:hover {
-        background-color: #a8d8b9;
-      }
+    }
+    &:hover {
+      background-color: $taskListActiveColor;
     }
     &:hover .fa-trash-o {
       display: inline-block;
@@ -115,7 +115,7 @@
   }
 
   .active {
-    background-color: #a8d8b9;
+    background-color: $taskListActiveColor;
   }
 }
 
