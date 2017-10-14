@@ -155,9 +155,9 @@ function initTaskList() {
         prepareSaveOrCancelWhenAddTask();
         $('.cover2').css('display',"block");
         $('.cover2').one("click",function(){
-            $('.cover2').css('display',"none");
             $('.cancel-save').trigger("click");
         });
+        showPage3()
     });
     $("#add-task").addClass("fa fa-plus");
 }
@@ -225,7 +225,6 @@ function prepareManipulate() {
 
         $('.cover2').css('display',"block");
         $('.cover2').one("click",function(){
-            $('.cover2').css('display',"none");
             $('.cancel-save').trigger("click");
         });
     });
@@ -396,7 +395,7 @@ function prepareSaveOrCancelWhenModifyTask() {
 
             $(".button-area").css('display',"none");
             $(".manipulate").css('display' ,"block");
-            $('.cover2').trigger("click");
+            $('.cover2').css('display',"none")
 
             $("#content").removeClass("content-with-btn").addClass("content")
             refreshMainByTaskId(currentTaskId);
@@ -408,7 +407,7 @@ function prepareSaveOrCancelWhenModifyTask() {
         refreshMainByTaskId(currentTaskId);
         $(".button-area").css('display',"none");
         $(".manipulate").css('display' ,"block");
-        $('.cover2').trigger("click");
+        $('.cover2').css('display',"none")
     });
 }
 function prepareSaveOrCancelWhenAddTask() {
@@ -440,7 +439,7 @@ function prepareSaveOrCancelWhenAddTask() {
             refreshCateList();
             $(".button-area").css('display',"none");
             $(".manipulate").css('display' ,"block");
-            $('.cover2').trigger("click");
+            $('.cover2').css('display',"none")
         }
     });
     $('.cancel-save').click(function(){
@@ -448,7 +447,8 @@ function prepareSaveOrCancelWhenAddTask() {
         refreshMainByTaskId(currentTaskId);
         $(".button-area").css('display',"none");
         $(".manipulate").css('display' ,"block");
-        $('.cover2').trigger("click");
+        $('.cover2').css('display',"none")
+        showPage2()
     });
 
 }
@@ -558,6 +558,7 @@ function refreshBackBtn (curPage) {
         case 3:
             backBtn[0].style.display = "block"
             backBtn.on("click", function () {
+                $('.cancel-save').trigger("click")
                 showPage2()
             })
             break
