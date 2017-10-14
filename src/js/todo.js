@@ -204,6 +204,8 @@ function prepareStatus() {
 }
 function prepareManipulate() {
     $('.manipulate a:first').click(function(){
+        var r = confirm("确定将该任务标记为已完成？")
+        if (!r) { return }
         var targetTaskId = $('#task-list>ul>li.active')[0].getAttribute('taskid');
         updateTaskStatusById(targetTaskId);
         $('#task-list>ul>li.active').addClass("task-done").removeClass("task-todo");
