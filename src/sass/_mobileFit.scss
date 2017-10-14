@@ -13,24 +13,70 @@
     text-align: center;
     line-height: 44px;
     margin-left: 0;
+    font-weight: bolder;
   }
 }
 
 .main-content {
   top: 44px;
-  // 隐藏位置已超出100%宽度的部分
+  // 隐藏位置已超出100%宽度的部分：
   overflow:hidden;
 }
 
-.category, .tasks, .main {
+%mobile-layout {
   width: 100%;
   left: 0;
   -webkit-transition: 0.3s  ease-in-out;
   transition: 0.3s  ease-in-out;
 }
-.list .fa-trash-o {
-  display: block;
-  right: 10px;
+.category {
+  @extend %mobile-layout;
+  .active {
+    background-color: transparent;
+  } 
+  .list {
+    padding-left: 0;
+    .fa-trash-o {
+      display: inline-block;
+      right: 10px;
+    }
+  }
+}
+.tasks {
+  @extend %mobile-layout;
+  .task-list {
+    .active {
+      background-color: transparent;
+    }
+    .fa-trash-o {
+      display: inline-block;
+      right: 10px;
+    }
+  } 
+}
+.main {
+  @extend %mobile-layout;
+  .title {
+    height: 44px;
+    line-height: 46px;
+  }
+  #task-date {
+    height: 44px;
+    line-height: 46px;
+    padding-left: 15px;
+  }
+  .manipulate {
+    padding-right: 0;
+    a {
+      margin-right: 10px;
+    }
+  }
+  #content {
+    top: 102px;
+    bottom: 10px;
+    right: 5px;
+    left: 10px;
+  }
 }
 /**
  * animation
