@@ -21,12 +21,35 @@
 }
 
 .category, .tasks, .main {
-  /*width: 100%;*/
-  /*left: 0;*/
+  width: 100%;
+  left: 0;
   -webkit-transition: 0.3s  ease-in-out;
   transition: 0.3s  ease-in-out;
 }
 .list .fa-trash-o {
   display: block;
   right: 10px;
+}
+/**
+ * animation
+ */
+.page-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.page-next {
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+.page-next-next {
+  -webkit-transform: translate3d(200%, 0, 0);
+  transform: translate3d(200%, 0, 0);
+}
+.page-pre {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+.page-pre-pre {
+  -webkit-transform: translate3d(-200%, 0, 0);
+  transform: translate3d(-200%, 0, 0);
 }

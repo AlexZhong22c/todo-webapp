@@ -2,7 +2,7 @@
 var currentCateId = 0; 
 var currentChildCateId = 0;
 var currentTaskId = 0; //当前任务 id
-
+var curPage = 1
 
 initAll();
 
@@ -88,6 +88,7 @@ function refreshCateList() {
         currentCateId =  parseInt($(this).parents("ul").prev("h2").attr("cateid"));
         
         refreshTaskListByChildCateId(currentChildCateId);
+        showPage2()
     });
 
     // 高亮：
@@ -309,6 +310,7 @@ function refreshTaskListByChildCateId(childCateId) {
             $(this).addClass("active");
             currentTaskId = parseInt($(this).attr("taskid"));
             refreshMainByTaskId(currentTaskId);
+            showPage3()
         });
 
 
@@ -511,4 +513,49 @@ function refreshTaskListAndActiveThisTask(taskId) {
     });   
 }
 
+// mobile fit:
+function showPage1 () {
+    $('.category').attr("class", "category page-active")
+    $('.tasks').attr("class", "tasks page-next")
+    $('.main').attr("class", "main page-next-next")
+    curPage = 1
+    refreshBackBtn(curPage)
+}
+function showPage2 () {
+    $('.category').attr("class", "category page-pre")
+    $('.tasks').attr("class", "tasks page-active")
+    $('.main').attr("class", "main page-next")
+    curPage = 2
+    refreshBackBtn(curPage)
+}
+function showPage3 () {
+    $('.category').attr("class", "category page-pre-pre")
+    $('.tasks').attr("class", "tasks page-pre")
+    $('.main').attr("class", "main page-active")
+    curPage = 3
+    refreshBackBtn(curPage)
+}
 
+// 更新“返回”按钮，并更新它绑定事件：
+function refreshBackBtn (curPage) {
+    var backBtn = $('#backBtn')
+    switch (curPage) {
+        case 1:
+            backBtn[0].style.display = "none"
+            break
+        case 2:
+            backBtn[0].style.display = "block"
+            backBtn.on("click", function () {
+                showPage1()
+            })
+            break
+        case 3:
+            backBtn[0].style.display = "block"
+            backBtn.on("click", function () {
+                showPage2()
+            })
+            break
+        default:
+            break
+    }
+}
