@@ -11,6 +11,11 @@
   
   z-index: 99;
 }
+
+// modal size:
+$modal-width: 320px;
+$modal-height: 200px;
+$modal-padding: 15px;
 .modal {
   @extend %border-box;
   z-index: 100;
