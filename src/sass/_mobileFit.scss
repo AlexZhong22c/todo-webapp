@@ -79,6 +79,24 @@
   }
 }
 /**
+ * modal
+ */
+$modal-width: 300px;
+$modal-height: 190px;
+$modal-padding: 5px;
+.modal {
+  width: $modal-width;
+  height: $modal-height;
+  padding: $modal-padding;
+  margin-left: -$modal-width/2;
+  margin-top: -$modal-height/2;
+}
+.cover2 {
+  top: -999999px;
+  width: 0;
+  height: 0;
+}
+/**
  * animation
  */
 .page-active {
