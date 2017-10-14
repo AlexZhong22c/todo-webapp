@@ -61,11 +61,17 @@ $btn-area-from-bottom: 15px;
   @extend %border-box;
   position: absolute;
   top: 120px;
-  bottom: 60px;
-  right: 15px;
+  right: 5px;
   left: 15px;
+  overflow: auto;
 }
-
+/*#content再用不同的class分别代表两个状态：*/
+.content {
+  bottom: 0;
+}
+.content-with-btn {
+  bottom: $btn-area-height + $btn-area-from-bottom;
+}
 .input-title {
   padding: 7px 10px;
   margin-top: 10px;
@@ -80,8 +86,9 @@ $btn-area-from-bottom: 15px;
   background: #91b491;
 }
 .textarea-content {
-  width: 100%;
-  height: 100%;
+  /*因为100%的textarea会胀大父元素：*/
+  width: 98%;
+  height: 98%;
   margin: 0; /* don't want to add to container size */
   border: 0; /* don't want to add to container size */
   resize: none;

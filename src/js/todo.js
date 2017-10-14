@@ -148,6 +148,7 @@ function initTaskList() {
         $("#todo-name").html('<input type="text" class="input-title" placeholder="请输入标题">');
         $(".manipulate").css('display' ,"none");
         $("#task-date span").html('<input type="date" class="input-date">');
+        $("#content").removeClass("content").addClass("content-with-btn")
         $("#content").html('<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>');
         $(".button-area").html('<span class="info"></span>                    <button class="save">保存</button>                    <button class="cancel-save">放弃</button>');
         $(".button-area").css('display',"block");
@@ -216,6 +217,7 @@ function prepareManipulate() {
         // 和点击add task button后的效果基本相同,
         $(".manipulate").css('display' ,"none");
         $("#task-date span").html('<input type="date" class="input-date">');
+        $("#content").removeClass("content").addClass("content-with-btn")
         $("#content").html('<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>');
         $(".button-area").html('<span class="info"></span>                    <button class="save">保存</button>                    <button class="cancel-save">放弃</button>');
         $(".button-area").css('display',"block");
@@ -396,11 +398,13 @@ function prepareSaveOrCancelWhenModifyTask() {
             $(".manipulate").css('display' ,"block");
             $('.cover2').trigger("click");
 
+            $("#content").removeClass("content-with-btn").addClass("content")
             refreshMainByTaskId(currentTaskId);
             refreshTaskListAndActiveThisTask(currentTaskId);
         }
     });
     $('.cancel-save').click(function(){
+        $("#content").removeClass("content-with-btn").addClass("content")
         refreshMainByTaskId(currentTaskId);
         $(".button-area").css('display',"none");
         $(".manipulate").css('display' ,"block");
@@ -429,6 +433,7 @@ function prepareSaveOrCancelWhenAddTask() {
             // console.log(taskObject);
             // 在addTask()里面补充taskObject的id,并返回id
             currentTaskId = addTask(taskObject);
+            $("#content").removeClass("content-with-btn").addClass("content")
             refreshMainByTaskId(currentTaskId);
             refreshTaskListAndActiveThisTask(currentTaskId);
             //就为了改一个数字刷新整个cate模块有点不值：
@@ -439,6 +444,7 @@ function prepareSaveOrCancelWhenAddTask() {
         }
     });
     $('.cancel-save').click(function(){
+        $("#content").removeClass("content-with-btn").addClass("content")
         refreshMainByTaskId(currentTaskId);
         $(".button-area").css('display',"none");
         $(".manipulate").css('display' ,"block");
