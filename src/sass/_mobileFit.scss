@@ -18,6 +18,8 @@
 
 .main-content {
   top: 44px;
+  // 隐藏位置已超出100%宽度的部分
+  overflow:hidden;
 }
 
 .category, .tasks, .main {
