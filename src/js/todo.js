@@ -202,43 +202,51 @@ function prepareStatus() {
         $("#task-list div").css('display',"block");
     });
 }
-function prepareManipulate() {
-    $('.manipulate a:first').click(function(){
-        var r = confirm("确定将该任务标记为已完成？")
-        if (!r) { return }
-        var targetTaskId = $('#task-list>ul>li.active')[0].getAttribute('taskid');
-        updateTaskStatusById(targetTaskId);
-        $('#task-list>ul>li.active').addClass("task-done").removeClass("task-todo");
-        $('#task-list>ul>li.active').children('i').removeClass("fa fa-file-o").addClass("fa fa-check");
-    });
-    $('.manipulate a:last').click(function(){
-
-        if (currentTaskId != 0) {
-           $("#todo-name").html('<input type="text" class="input-title" placeholder="请输入标题">');
-        }
-        // 和点击add task button后的效果基本相同,
-        $(".manipulate").css('display' ,"none");
-        $("#task-date span").html('<input type="date" class="input-date">');
-        $("#content").removeClass("content").addClass("content-with-btn")
-        $("#content").html('<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>');
-        $(".button-area").html('<span class="info"></span>                    <button class="save">保存</button>                    <button class="cancel-save">放弃</button>');
-        $(".button-area").css('display',"block");
-        prepareSaveOrCancelWhenModifyTask(); // 和prepareSaveOrCancelWhenAddTask()基本相同
-
-        $('.cover2').css('display',"block");
-        $('.cover2').one("click",function(){
-            $('.cancel-save').trigger("click");
-        });
-    });
-}
 function initMain() {
-    prepareManipulate();
-
     refreshMainByTaskId(0);
+}
+function refreshManipulate(taskId, isFinished) {
+    var mani = $(".manipulate")[0]
+    mani.innerHTML = ""
+    if (isFinished == true) {
+    } else {
+        var finishBtn = $("<a/>").appendTo(mani)
+        var modifyBtn = $("<a/>").appendTo(mani)
+        $('<i class="fa fa-check-square-o"></i>').appendTo(finishBtn)
+        $('<i class="fa fa-pencil-square-o"></i>').appendTo(modifyBtn)
+        finishBtn.click(function(){
+            var r = confirm("确定将该任务标记为已完成？")
+            if (!r) { return }
+            updateTaskStatusById(taskId)
+            $('#task-list>ul>li.active').addClass("task-done").removeClass("task-todo");
+            $('#task-list>ul>li.active').children('i').removeClass("fa fa-file-o").addClass("fa fa-check");
+        });
+        modifyBtn.click(function(){
+
+            if (currentTaskId != 0) {
+               $("#todo-name").html('<input type="text" class="input-title" placeholder="请输入标题">');
+            }
+            // 和点击add task button后的效果基本相同,
+            $(".manipulate").css('display' ,"none");
+            $("#task-date span").html('<input type="date" class="input-date">');
+            $("#content").removeClass("content").addClass("content-with-btn")
+            $("#content").html('<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>');
+            $(".button-area").html('<span class="info"></span>                    <button class="save">保存</button>                    <button class="cancel-save">放弃</button>');
+            $(".button-area").css('display',"block");
+            prepareSaveOrCancelWhenModifyTask(); // 和prepareSaveOrCancelWhenAddTask()基本相同
+
+            $('.cover2').css('display',"block");
+            $('.cover2').one("click",function(){
+                $('.cancel-save').trigger("click");
+            });
+        });
+    }
 }
 function refreshMainByTaskId(taskId) {
     var targetTask = queryTaskById(taskId);
     $("#todo-name")[0].innerHTML = targetTask.name;
+    refreshManipulate(taskId, targetTask.finished)
+
     $("#task-date span")[0].innerHTML = targetTask.date;
     $("#content")[0].innerHTML = targetTask.content;
 }
