@@ -215,8 +215,11 @@ function refreshManipulate(taskId, isFinished) {
             var r = confirm("确定将该任务重置为未完成？")
             if (!r) { return }
             updateTaskStatusById(taskId, false)
+            // 简化版的refreshTaskListAndActiveThisTask(taskId)为如下四步：
             $('#task-list>ul>li.active').removeClass("task-done").addClass("task-todo");
             $('#task-list>ul>li.active').children('i').first().removeClass("fa fa-check").addClass("fa fa-file-o");
+            $('#all-tasks').trigger("click")
+            refreshMainByTaskId(currentTaskId)
         });
     } else {
         var finishBtn = $("<a/>").appendTo(mani)
@@ -227,8 +230,11 @@ function refreshManipulate(taskId, isFinished) {
             var r = confirm("确定将该任务标记为已完成？")
             if (!r) { return }
             updateTaskStatusById(taskId, true)
+            // 简化版的refreshTaskListAndActiveThisTask(taskId)为如下四步：
             $('#task-list>ul>li.active').addClass("task-done").removeClass("task-todo");
             $('#task-list>ul>li.active').children('i').first().removeClass("fa fa-file-o").addClass("fa fa-check");
+            $('#all-tasks').trigger("click")
+            refreshMainByTaskId(currentTaskId)
         });
         modifyBtn.click(function(){
 
@@ -253,7 +259,12 @@ function refreshManipulate(taskId, isFinished) {
 }
 function refreshMainByTaskId(taskId) {
     var targetTask = queryTaskById(taskId);
-    $("#todo-name")[0].innerHTML = targetTask.name;
+    if (targetTask.finished) {
+        $("#todo-name")[0].innerHTML = '<i class="fa fa-check"></i>' + targetTask.name
+    } else {
+        $("#todo-name")[0].innerHTML = targetTask.name;
+    }
+    
     refreshManipulate(taskId, targetTask.finished)
 
     $("#task-date span")[0].innerHTML = targetTask.date;
