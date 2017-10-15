@@ -109,12 +109,14 @@ function refreshCateList() {
     $("#cate-list ul>li>h2>span").prev().addClass("fa fa-folder");
     $("#cate-list ul>li>h2>span").next().addClass("fa fa-trash-o");
     $("#cate-list ul>li>h2>span:first").next().removeClass("fa fa-trash-o");
-    $("#cate-list ul>li>ul>li>h3>span").prev().addClass("fa fa-file-o");
+    $("#cate-list ul>li>ul>li>h3>span").prev().addClass("fa fa-list-ul");
     $("#cate-list ul>li>ul>li>h3>span").next().addClass("fa fa-trash-o");
     $("#cate-list ul>li>ul>li>h3>span:first").next().removeClass("fa fa-trash-o");
 
     // 配置子分类的删除按钮
     $('#cate-list>ul>li>ul>li i.fa-trash-o').click(function(){
+        var r = confirm("确定删除该子分类？")
+        if (!r) { return }
         var targetChildCateId = parseInt($(this).parent()[0].getAttribute("childcateid"));
         deleteChildCateById(targetChildCateId);
 
@@ -124,6 +126,8 @@ function refreshCateList() {
     });
     // 配置分类的删除按钮
     $('#cate-list>ul>li>h2>i.fa-trash-o').click(function(){
+        var r = confirm("确定删除该分类？")
+        if (!r) { return }
         var targetCateId = parseInt($(this).parent()[0].getAttribute("cateid"));
         deleteCateById(targetCateId);
         initCategory();
@@ -212,7 +216,7 @@ function refreshManipulate(taskId, isFinished) {
         var renewBtn = $("<a/>").appendTo(mani)
         $('<i class="fa fa-refresh"></i>').appendTo(renewBtn)
         renewBtn.click(function(){
-            var r = confirm("确定将该任务重置为未完成？")
+            var r = confirm("确定重置该任务为未完成？")
             if (!r) { return }
             updateTaskStatusById(taskId, false)
             // 简化版的refreshTaskListAndActiveThisTask(taskId)为如下四步：
@@ -227,7 +231,7 @@ function refreshManipulate(taskId, isFinished) {
         $('<i class="fa fa-check-square-o"></i>').appendTo(finishBtn)
         $('<i class="fa fa-pencil-square-o"></i>').appendTo(modifyBtn)
         finishBtn.click(function(){
-            var r = confirm("确定将该任务标记为已完成？")
+            var r = confirm("确定标记该任务为已完成？")
             if (!r) { return }
             updateTaskStatusById(taskId, true)
             // 简化版的refreshTaskListAndActiveThisTask(taskId)为如下四步：
@@ -317,12 +321,23 @@ function refreshTaskListByChildCateId(childCateId) {
         }
         // 配置任务的删除按钮
         $('#task-list>ul>li i.fa-trash-o').click(function(){
+            var r = confirm("确定删除该任务？")
+            if (!r) { return }
             var targetTaskId = parseInt($(this).parent()[0].getAttribute("taskid"));
             deleteTaskById(targetTaskId,currentChildCateId);
 
             $("#task-list ul>li").removeClass("active");
             refreshMainByTaskId(0);
             currentTaskId = 0;
+            // 如果当前在默认子分类，则active taskId为0的任务：
+            if (currentChildCateId == 0) {
+                for (var m = 0; m < TaskLiArr.length; m++) {
+                    if(parseInt(TaskLiArr[m].getAttribute("taskid")) == currentTaskId) {
+                        addClass(TaskLiArr[m], "active");
+                        break;
+                    }
+                }
+            }
 
             if ($(this).parent().siblings().length == 0) {
                 $(this).parent().parent().prev()[0].innerHTML = "";
@@ -534,12 +549,23 @@ function refreshTaskListAndActiveThisTask(taskId) {
 
     // 配置任务的删除按钮
     $('#task-list>ul>li i.fa-trash-o').click(function(){
+        var r = confirm("确定删除该任务？")
+        if (!r) { return }
         var targetTaskId = parseInt($(this).parent()[0].getAttribute("taskid"));
         deleteTaskById(targetTaskId,currentChildCateId);
 
         $("#task-list ul>li").removeClass("active");
         refreshMainByTaskId(0);
         currentTaskId = 0;
+        // 如果当前在默认子分类，则active taskId为0的任务：
+        if (currentChildCateId == 0) {
+            for (var m = 0; m < TaskLiArr.length; m++) {
+                if(parseInt(TaskLiArr[m].getAttribute("taskid")) == currentTaskId) {
+                    addClass(TaskLiArr[m], "active");
+                    break;
+                }
+            }
+        }
         // console.log($(this).parent()[0].getAttribute("taskid"));
         if ($(this).parent().siblings().length == 0) {
             $(this).parent().parent().prev()[0].innerHTML = "";
