@@ -54,6 +54,7 @@ function initCategory() {
     $("#add").addClass("fa fa-plus"); 
 }
 function refreshCateList() {
+    // 这种文件夹结构和交互，能帮我避免很多问题：
     $("#allTasks span")[0].innerHTML = queryAllTasks().length;
     
     var cates = queryAllCates();
@@ -73,20 +74,21 @@ function refreshCateList() {
     $("#cate-list")[0].innerHTML = '<ul>'+cateLiContent+'</ul>';
     
     // 准备好单击事件
-    $("#cate-list ul>li>h2 span").click(function() {
-        if ($(this).parent().next()) {
-            $(this).parent().next().toggle(500);
+    $("#cate-list ul>li>h2").click(function() {
+        if ($(this).next()) {
+            $(this).next().toggle(500);
         }
     });
-    // 这里要不要预防拿不到h3元素呢??
-    $("#cate-list ul>li>ul").delegate("h3 span","click",function(){
+    $("#cate-list ul>li>ul").delegate("h3","click",function(){
+        // 改h3加active：
         $("#cate-list ul>li>ul h3").removeClass("active");
-        $(this).parent().addClass("active");
-        currentChildCateId = parseInt($(this).parent().attr("childcateid"));
+        $(this).addClass("active");
+        currentChildCateId = parseInt($(this).attr("childcateid"));
+        // 类似于该h2加active：
         $('#cate-list h2 span').prev().removeClass("fa-folder-o").addClass("fa-folder");
         $(this).parents("ul").prev("h2").children("span").prev().removeClass("fa-folder").addClass("fa-folder-o");
         currentCateId =  parseInt($(this).parents("ul").prev("h2").attr("cateid"));
-        
+
         refreshTaskListByChildCateId(currentChildCateId);
         showPage2()
     });
@@ -114,7 +116,8 @@ function refreshCateList() {
     $("#cate-list ul>li>ul>li>h3>span:first").next().removeClass("fa fa-trash-o");
 
     // 配置子分类的删除按钮
-    $('#cate-list>ul>li>ul>li i.fa-trash-o').click(function(){
+    $('#cate-list>ul>li>ul>li i.fa-trash-o').click(function(event){
+        event.stopPropagation()
         var r = confirm("确定删除该子分类？")
         if (!r) { return }
         var targetChildCateId = parseInt($(this).parent()[0].getAttribute("childcateid"));
@@ -125,7 +128,8 @@ function refreshCateList() {
         initMain();
     });
     // 配置分类的删除按钮
-    $('#cate-list>ul>li>h2>i.fa-trash-o').click(function(){
+    $('#cate-list>ul>li>h2>i.fa-trash-o').click(function(event){
+        event.stopPropagation()
         var r = confirm("确定删除该分类？")
         if (!r) { return }
         var targetCateId = parseInt($(this).parent()[0].getAttribute("cateid"));
@@ -320,7 +324,8 @@ function refreshTaskListByChildCateId(childCateId) {
             }
         }
         // 配置任务的删除按钮
-        $('#task-list>ul>li i.fa-trash-o').click(function(){
+        $('#task-list>ul>li i.fa-trash-o').click(function(event){
+            event.stopPropagation()
             var r = confirm("确定删除该任务？")
             if (!r) { return }
             var targetTaskId = parseInt($(this).parent()[0].getAttribute("taskid"));
@@ -386,6 +391,7 @@ function prepareModalEvent() {
         $(".cover").hide();
     }); 
     $("#modal-foot button.ok").click(function(event) {
+        event.stopPropagation();
         var newName = $("#newCateName")[0].value;
         var selectValue = parseInt($("#modal-select")[0].value);
         if (newName === "") {
@@ -400,7 +406,6 @@ function prepareModalEvent() {
             $(".cover").hide();
         }
         updateModalContent();
-        event.stopPropagation();
     });
     $(".modal").on("click",function(event){
         // 不做任何动作
@@ -548,7 +553,8 @@ function refreshTaskListAndActiveThisTask(taskId) {
     });
 
     // 配置任务的删除按钮
-    $('#task-list>ul>li i.fa-trash-o').click(function(){
+    $('#task-list>ul>li i.fa-trash-o').click(function(event){
+        event.stopPropagation()
         var r = confirm("确定删除该任务？")
         if (!r) { return }
         var targetTaskId = parseInt($(this).parent()[0].getAttribute("taskid"));
