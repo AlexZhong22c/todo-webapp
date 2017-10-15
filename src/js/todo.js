@@ -209,6 +209,15 @@ function refreshManipulate(taskId, isFinished) {
     var mani = $(".manipulate")[0]
     mani.innerHTML = ""
     if (isFinished == true) {
+        var renewBtn = $("<a/>").appendTo(mani)
+        $('<i class="fa fa-refresh"></i>').appendTo(renewBtn)
+        renewBtn.click(function(){
+            var r = confirm("确定将该任务重置为未完成？")
+            if (!r) { return }
+            updateTaskStatusById(taskId, false)
+            $('#task-list>ul>li.active').removeClass("task-done").addClass("task-todo");
+            $('#task-list>ul>li.active').children('i').first().removeClass("fa fa-check").addClass("fa fa-file-o");
+        });
     } else {
         var finishBtn = $("<a/>").appendTo(mani)
         var modifyBtn = $("<a/>").appendTo(mani)
@@ -217,9 +226,9 @@ function refreshManipulate(taskId, isFinished) {
         finishBtn.click(function(){
             var r = confirm("确定将该任务标记为已完成？")
             if (!r) { return }
-            updateTaskStatusById(taskId)
+            updateTaskStatusById(taskId, true)
             $('#task-list>ul>li.active').addClass("task-done").removeClass("task-todo");
-            $('#task-list>ul>li.active').children('i').removeClass("fa fa-file-o").addClass("fa fa-check");
+            $('#task-list>ul>li.active').children('i').first().removeClass("fa fa-file-o").addClass("fa fa-check");
         });
         modifyBtn.click(function(){
 

@@ -276,11 +276,16 @@ function updateTask(taskObject) {
     }    
     localStorage.task = JSON.stringify(tasks);
 }
-function updateTaskStatusById(id) {
+function updateTaskStatusById(id, isFinished) {
+    if (isFinished) {
+        isFinished = true
+    } else {
+        isFinished = false
+    }
     var tasks = JSON.parse(localStorage.task);
     for (var i = 0; i < tasks.length; i++) {
         if (tasks[i].id == id) {
-            tasks[i].finished = true;
+            tasks[i].finished = isFinished
             break;
         }
     }
