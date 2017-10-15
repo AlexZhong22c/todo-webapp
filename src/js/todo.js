@@ -2,7 +2,7 @@
 var currentCateId = 0; 
 var currentChildCateId = 0;
 var currentTaskId = 0; //当前任务 id
-var curPage = 2
+var curPage = 1
 
 initAll();
 
@@ -13,7 +13,6 @@ function initAll() {
     initModal();
     initTaskList();
     initMain();
-    showPage2()
 }
 
 
