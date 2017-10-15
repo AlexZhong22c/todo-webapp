@@ -49,7 +49,7 @@ function checkDataBase() {
                 finished: true,
                 name: "使用说明",
                 date: "2017-01-20",
-                content: "这是一个To-Do List，待办事项列表App：<br>本应用为离线应用，数据将存储在浏览器的本地<br>手机端横屏使用更佳<br><br>左侧为文件夹结构的分类列表<br>中间为当前分类下的任务列表<br>右侧为任务的内容详情<br><br>有 添加删除分类，添加删除任务，修改任务，以及标记任务是否已完成 等功能<br><br>by <a target='_blank' href='https://github.com/AlexZhong22c/ToDoApp-IFE2015'>az22c</a> with <a target='_blank' href='https://alexzhong22c.github.io/color-design-22c/color-design.html'>color</a><br>2017年2月"
+                content: "这是一个To-Do List，待办事项列表App：<br>本应用为离线应用，数据将存储在浏览器的本地<br>页面自适应移动端和PC<br><br>整个App可分为三栏：<br>左栏为文件夹结构的分类列表<br>中栏为当前分类下的任务列表<br>右栏为任务的内容详情<br><br>有 添加删除分类，添加删除任务，修改任务，以及标记任务是否已完成 等功能<br><br>by <a target='_blank' href='https://github.com/AlexZhong22c/ToDoApp-IFE2015'>az22c</a> with <a target='_blank' href='https://alexzhong22c.github.io/color-design-22c/color-design.html'>color</a><br>2017年2月"
             },
             {
                 id: 1,
