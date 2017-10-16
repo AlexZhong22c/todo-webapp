@@ -258,7 +258,7 @@ function refreshManipulate(taskId, isFinished) {
         });
         modifyBtn.click(function(taskId){
             var contentEle = $("#content")
-            var tmpContent = contentEle[0].innerHTML
+            var textarea = $(".textarea-content")[0]
             // if (currentTaskId != 0) {
             //    $("#todo-name").html('<input type="text" class="input-title" placeholder="请输入标题">');
             // }
@@ -267,7 +267,8 @@ function refreshManipulate(taskId, isFinished) {
             // $("#task-date span").html('<input type="date" class="input-date">');
             contentEle.removeClass("content").addClass("content-with-btn")
             contentEle.html('<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>');
-            $(".textarea-content").text(tmpContent)
+            
+            $(".textarea-content").text(textarea.value)
             $(".textarea-content").focus(function(){
                 $(".textarea-content").css("background-color","#D6D6FF");
             });
@@ -305,7 +306,12 @@ function refreshMainByTaskId(taskId) {
         console.log("changeCode2函数不存在！")
         _content = targetTask.content
     }
-    $("#content")[0].innerHTML = _content
+    var textarea = $(".textarea-content")[0]
+    textarea.setAttribute("readonly", "readonly")
+    textarea.setAttribute("disabled", "disabled")
+    textarea.value = _content
+
+    // $("#content")[0].innerHTML = _content
 }
 function refreshTaskListByChildCateId(childCateId) {
     var dateArr = [];

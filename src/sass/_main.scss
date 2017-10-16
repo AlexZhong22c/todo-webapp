@@ -68,7 +68,6 @@ $btn-area-from-bottom: 15px;
 /*#content再用不同的class分别代表两个状态：*/
 .content {
   bottom: 0;
-  white-space: pre;
 }
 .content-with-btn {
   bottom: $btn-area-height + $btn-area-from-bottom;
