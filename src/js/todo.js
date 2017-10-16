@@ -160,7 +160,7 @@ function initTaskList() {
         $("#todo-name").html('<input type="text" class="input-title" placeholder="请输入标题">');
         $(".manipulate").css('display' ,"none");
         $("#task-date span").html('<input type="date" class="input-date">');
-        contentEle.removeClass("content").addClass("content-with-btn")
+        contentEle.removeClass("content-no-btn").addClass("content-with-btn")
         contentEle.html('<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>');
         // $(".textarea-content").text(tmpContent) // 添加任务时不需要这步
         $(".textarea-content").focus(function(){
@@ -265,7 +265,7 @@ function refreshManipulate(taskId, isFinished) {
             // 和点击add task button后的效果基本相同,
             $(".manipulate").css('display' ,"none");
             // $("#task-date span").html('<input type="date" class="input-date">');
-            contentEle.removeClass("content").addClass("content-with-btn")
+            contentEle.removeClass("content-no-btn").addClass("content-with-btn")
             contentEle.html('<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>');
             
             $(".textarea-content").text(textarea.value)
@@ -289,7 +289,6 @@ function refreshManipulate(taskId, isFinished) {
     }
 }
 function refreshMainByTaskId(taskId) {
-    var _content = ""
     var targetTask = queryTaskById(taskId);
     if (targetTask.finished) {
         $("#todo-name")[0].innerHTML = '<i class="fa fa-check"></i>' + targetTask.name
@@ -300,18 +299,11 @@ function refreshMainByTaskId(taskId) {
     refreshManipulate(taskId, targetTask.finished)
 
     $("#task-date span")[0].innerHTML = targetTask.date;
-    if (window.changeCode2) {
-        _content = changeCode2(targetTask.content)
-    } else {
-        console.log("changeCode2函数不存在！")
-        _content = targetTask.content
-    }
+
     var textarea = $(".textarea-content")[0]
     textarea.setAttribute("readonly", "readonly")
     textarea.setAttribute("disabled", "disabled")
-    textarea.value = _content
-
-    // $("#content")[0].innerHTML = _content
+    textarea.value = targetTask.content
 }
 function refreshTaskListByChildCateId(childCateId) {
     var dateArr = [];
@@ -474,13 +466,6 @@ function prepareSaveOrCancelWhenModifyTask() {
         if (content.value === "") {
             info.innerHTML = "内容不能为空";
         } else {
-            // 预防XSS攻击:
-            if (window.changeCode) {
-                var _content = changeCode(content.value)
-            } else {
-                console.log('changeCode函数不存在！')
-                var _content = content.value
-            }
            var taskObject = {};
            var targetTask = queryTaskById(currentTaskId)
            taskObject.id = currentTaskId;
@@ -490,7 +475,7 @@ function prepareSaveOrCancelWhenModifyTask() {
            //  taskObject.date = date.value; 
            taskObject.name = targetTask.name
            taskObject.date = targetTask.date
-            taskObject.content = _content
+            taskObject.content = content.value
             // console.log(taskObject);
             updateTask(taskObject);
 
@@ -498,13 +483,13 @@ function prepareSaveOrCancelWhenModifyTask() {
             $(".manipulate").css('display' ,"block");
             $('.cover2').css('display',"none")
 
-            $("#content").removeClass("content-with-btn").addClass("content")
+            $("#content").removeClass("content-with-btn").addClass("content-no-btn")
             refreshMainByTaskId(currentTaskId);
             refreshTaskListAndActiveThisTask(currentTaskId);
         }
     });
     $('.cancel-save').click(function(){
-        $("#content").removeClass("content-with-btn").addClass("content")
+        $("#content").removeClass("content-with-btn").addClass("content-no-btn")
         refreshMainByTaskId(currentTaskId);
         $(".button-area").css('display',"none");
         $(".manipulate").css('display' ,"block");
@@ -522,6 +507,9 @@ function prepareSaveOrCancelWhenAddTask() {
         } else if (date.value === "") {
             // 日期需要加强校验：
             info.innerHTML = "日期不能为空";
+        } else if (!date.value.match(/^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/)) {
+            // http://www.cnblogs.com/jay-xu33/archive/2009/01/08/1371953.html
+            info.innerHTML = "日期格式不合法";
         } else if (content.value === "") {
             info.innerHTML = "内容不能为空";
         } else {
@@ -529,23 +517,21 @@ function prepareSaveOrCancelWhenAddTask() {
             if (window.changeCode) {
                 var _name = changeCode(title.value)
                 var _date = changeCode(date.value)
-                var _content = changeCode(content.value)
             } else {
                 console.log('changeCode函数不存在！')
                 var _name = title.value
                 var _date = date.value
-                var _content = content.value
             }
            var taskObject = {};
             taskObject.pid = currentChildCateId;
             taskObject.finished = false;
             taskObject.name = _name
             taskObject.date = _date
-            taskObject.content = _content
+            taskObject.content = content.value
             // console.log(taskObject);
             // 在addTask()里面补充taskObject的id,并返回id
             currentTaskId = addTask(taskObject);
-            $("#content").removeClass("content-with-btn").addClass("content")
+            $("#content").removeClass("content-with-btn").addClass("content-no-btn")
             refreshMainByTaskId(currentTaskId);
             refreshTaskListAndActiveThisTask(currentTaskId);
             //就为了改一个数字刷新整个cate模块有点不值：
@@ -556,7 +542,7 @@ function prepareSaveOrCancelWhenAddTask() {
         }
     });
     $('.cancel-save').click(function(){
-        $("#content").removeClass("content-with-btn").addClass("content")
+        $("#content").removeClass("content-with-btn").addClass("content-no-btn")
         refreshMainByTaskId(currentTaskId);
         $(".button-area").css('display',"none");
         $(".manipulate").css('display' ,"block");

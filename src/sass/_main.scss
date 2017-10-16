@@ -63,10 +63,9 @@ $btn-area-from-bottom: 15px;
   top: 120px;
   right: 5px;
   left: 15px;
-  overflow: auto;
 }
 /*#content再用不同的class分别代表两个状态：*/
-.content {
+.content-no-btn {
   bottom: 0;
 }
 .content-with-btn {
@@ -88,7 +87,7 @@ $btn-area-from-bottom: 15px;
 .textarea-content {
   /*因为100%的textarea会胀大父元素：*/
   width: 98%;
-  height: 97%;
+  height: 96%;
   margin: 0; /* don't want to add to container size */
   border: 0; /* don't want to add to container size */
   resize: none; /*这句好像没用*/

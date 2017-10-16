@@ -52,15 +52,3 @@ function changeCode (str) {
         .replace(/\//g, "&#x2f;")
     return str
 }
-/**
- * 逆向转码，这个函数有用：
- */
-function changeCode2 (str) {
-    str = str.replace(/&amp;/g, "\&")
-        .replace(/&lt;/g, "<")
-        .replace(/&gt;/g, ">")
-        .replace(/&quot;/g, '"')
-        .replace(/&#x27;/g, "'")
-        .replace(/&#x2f;/g, "\/")
-    return str
-}
