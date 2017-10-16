@@ -2,7 +2,7 @@
 var currentCateId = 0; 
 var currentChildCateId = 0;
 var currentTaskId = 0; //当前任务 id
-var curPage = 1
+var curPage = 2
 
 initAll();
 
@@ -13,6 +13,8 @@ function initAll() {
     initModal();
     initTaskList();
     initMain();
+    showPage2()
+    curPage = 2
 }
 
 
@@ -405,7 +407,7 @@ function initModal() {
 }
 function updateModalContent() {
     var cates = queryAllCates();
-    var selectContent = '<option value="-1"> [无]</option>';
+    var selectContent = '<option value="-1"> [根节点]</option>';
     for (var i = 0; i < cates.length; i++) {
         selectContent += '<option value="' + cates[i].id + '">' + cates[i].name + '</option>';
     } 
@@ -660,7 +662,10 @@ function showPage3 () {
 }
 
 // 更新“返回”按钮，并更新它绑定事件：
+// 另外， 再可以在检测到屏幕宽度变化的时候再调用一次这个函数：
 function refreshBackBtn (curPage) {
+    // window.innerWidth这个判断还可以做调整：
+    if (window.innerWidth > 770) { return }
     var backBtn = $('#backBtn')
     switch (curPage) {
         case 1:
