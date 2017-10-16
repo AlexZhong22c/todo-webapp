@@ -92,7 +92,7 @@ $btn-area-from-bottom: 15px;
   height: 97%;
   margin: 0; /* don't want to add to container size */
   border: 0; /* don't want to add to container size */
-  resize: none;
+  resize: none; /*这句好像没用*/
   line-height: 1.6;
 }
 .button-area {

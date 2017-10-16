@@ -38,3 +38,29 @@ function deleteInArray (arr,index) {
 function compareNumbers(a, b) {
   return a - b;
 }
+/**
+ * 转码 XSS 防护
+ * @param  {String} str 用户输入的字符串
+ * @return {String}     转码后的字符串
+ */
+function changeCode (str) {
+    str = str.replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#x27;")
+        .replace(/\//g, "&#x2f;")
+    return str
+}
+/**
+ * 逆向转码，这个函数有用：
+ */
+function changeCode2 (str) {
+    str = str.replace(/&amp;/g, "\&")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"')
+        .replace(/&#x27;/g, "'")
+        .replace(/&#x2f;/g, "\/")
+    return str
+}

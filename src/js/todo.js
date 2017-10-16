@@ -153,11 +153,21 @@ function initTaskList() {
     currentTaskId = 0;
 
     $('#add-task').click(function(){
+        var contentEle = $("#content")
+        // var tmpContent = contentEle[0].innerHTML
         $("#todo-name").html('<input type="text" class="input-title" placeholder="请输入标题">');
         $(".manipulate").css('display' ,"none");
         $("#task-date span").html('<input type="date" class="input-date">');
-        $("#content").removeClass("content").addClass("content-with-btn")
-        $("#content").html('<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>');
+        contentEle.removeClass("content").addClass("content-with-btn")
+        contentEle.html('<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>');
+        // $(".textarea-content").text(tmpContent) // 添加任务时不需要这步
+        $(".textarea-content").focus(function(){
+            $(".textarea-content").css("background-color","#D6D6FF");
+        });
+        $(".textarea-content").blur(function(){
+            $(".textarea-content").css("background-color","#ffffff");
+        });
+
         $(".button-area").html('<span class="info"></span>                    <button class="save">保存</button>                    <button class="cancel-save">放弃</button>');
         $(".button-area").css('display',"block");
         prepareSaveOrCancelWhenAddTask();
@@ -276,6 +286,7 @@ function refreshManipulate(taskId, isFinished) {
     }
 }
 function refreshMainByTaskId(taskId) {
+    var _content = ""
     var targetTask = queryTaskById(taskId);
     if (targetTask.finished) {
         $("#todo-name")[0].innerHTML = '<i class="fa fa-check"></i>' + targetTask.name
@@ -286,7 +297,13 @@ function refreshMainByTaskId(taskId) {
     refreshManipulate(taskId, targetTask.finished)
 
     $("#task-date span")[0].innerHTML = targetTask.date;
-    $("#content")[0].innerHTML = targetTask.content;
+    if (window.changeCode2) {
+        _content = changeCode2(targetTask.content)
+    } else {
+        console.log("changeCode2函数不存在！")
+        _content = targetTask.content
+    }
+    $("#content")[0].innerHTML = _content
 }
 function refreshTaskListByChildCateId(childCateId) {
     var dateArr = [];
@@ -407,6 +424,13 @@ function prepareModalEvent() {
         if (newName === "") {
             alert("请输入分类名称");
         } else {
+            // 预防XSS攻击:
+            if (window.changeCode) {
+                newName = changeCode(newName)
+            } else {
+                console.log('changeCode函数不存在！')
+                newName = newName
+            }
             if (selectValue == -1) {
                 addCate(newName);
             } else {
@@ -429,7 +453,6 @@ function prepareModalEvent() {
 // 和prepareSaveOrCancelWhenAddTask()基本相同
 function prepareSaveOrCancelWhenModifyTask() {
     $('.save').click(function(){
-
         // var title = $(".input-title")[0];
         var content = $(".textarea-content")[0];
         // var date = $(".input-date")[0];
@@ -443,6 +466,13 @@ function prepareSaveOrCancelWhenModifyTask() {
         if (content.value === "") {
             info.innerHTML = "内容不能为空";
         } else {
+            // 预防XSS攻击:
+            if (window.changeCode) {
+                var _content = changeCode(content.value)
+            } else {
+                console.log('changeCode函数不存在！')
+                var _content = content.value
+            }
            var taskObject = {};
            var targetTask = queryTaskById(currentTaskId)
            taskObject.id = currentTaskId;
@@ -452,7 +482,7 @@ function prepareSaveOrCancelWhenModifyTask() {
            //  taskObject.date = date.value; 
            taskObject.name = targetTask.name
            taskObject.date = targetTask.date
-            taskObject.content = content.value;
+            taskObject.content = _content
             // console.log(taskObject);
             updateTask(taskObject);
 
@@ -482,16 +512,28 @@ function prepareSaveOrCancelWhenAddTask() {
         if (title.value === "") {
             info.innerHTML = "标题不能为空";
         } else if (date.value === "") {
+            // 日期需要加强校验：
             info.innerHTML = "日期不能为空";
         } else if (content.value === "") {
             info.innerHTML = "内容不能为空";
         } else {
+            // 预防XSS攻击:
+            if (window.changeCode) {
+                var _name = changeCode(title.value)
+                var _date = changeCode(date.value)
+                var _content = changeCode(content.value)
+            } else {
+                console.log('changeCode函数不存在！')
+                var _name = title.value
+                var _date = date.value
+                var _content = content.value
+            }
            var taskObject = {};
             taskObject.pid = currentChildCateId;
             taskObject.finished = false;
-            taskObject.name = title.value;
-            taskObject.date = date.value; 
-            taskObject.content = content.value;
+            taskObject.name = _name
+            taskObject.date = _date
+            taskObject.content = _content
             // console.log(taskObject);
             // 在addTask()里面补充taskObject的id,并返回id
             currentTaskId = addTask(taskObject);
