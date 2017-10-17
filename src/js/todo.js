@@ -653,30 +653,37 @@ function showPage3 () {
     refreshBackBtn(curPage)
 }
 
-// 更新“返回”按钮，并更新它绑定事件：
-// 另外， 再可以在检测到屏幕宽度变化的时候再调用一次这个函数：
+// 更新“返回”按钮，并更新它的绑定事件：
 function refreshBackBtn (curPage) {
     // window.innerWidth这个判断还可以做调整：
-    if (window.innerWidth > 770) { return }
-    var backBtn = $('#backBtn')
-    switch (curPage) {
-        case 1:
-            backBtn[0].style.display = "none"
-            break
-        case 2:
-            backBtn[0].style.display = "block"
-            backBtn.on("click", function () {
-                showPage1()
-            })
-            break
-        case 3:
-            backBtn[0].style.display = "block"
-            backBtn.on("click", function () {
-                $('.cancel-save').trigger("click")
-                showPage2()
-            })
-            break
-        default:
-            break
+    if (window.innerWidth > 770) {
+      $('#backBtn')[0].style.display = "none"
+    } else {
+      var backBtn = $('#backBtn')
+      switch (curPage) {
+          case 1:
+              backBtn[0].style.display = "none"
+              break
+          case 2:
+              backBtn[0].style.display = "block"
+              backBtn.on("click", function () {
+                  showPage1()
+              })
+              break
+          case 3:
+              backBtn[0].style.display = "block"
+              backBtn.on("click", function () {
+                  $('.cancel-save').trigger("click")
+                  showPage2()
+              })
+              break
+          default:
+              break
+      }
     }
+}
+
+window.onresize = function () {
+    // 谷歌浏览器会触发两次：
+    refreshBackBtn(curPage)
 }
